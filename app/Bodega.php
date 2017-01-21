@@ -1,18 +1,19 @@
 <?php
 
-namespace Store\Bodega;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Bodega extends Model {
 
-	protected $table = 'bodegas';
-	public $timestamps = true;
-	protected $visible = array('direccion');
+	protected 	$fillable 	= ['nombre', 'direccion', 'tienda_id'];
+	protected 	$table 		= 'bodegas';
+	public 		$timestamps = true;
+	protected 	$visible = array('nombre', 'direccion', 'tienda_id');
 
 	public function productos()
 	{
-		return $this->hasMany('Store\Models\Producto', 'bodega_id');
+		return $this->hasMany(Producto::class);
 	}
 
 	public function tienda()

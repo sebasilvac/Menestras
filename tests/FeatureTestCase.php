@@ -6,7 +6,9 @@
 
         use DatabaseTransactions;
 
-
+        function test_index(){
+            return true;
+        }
 
     }
 ?>

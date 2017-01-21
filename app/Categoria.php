@@ -1,6 +1,6 @@
 <?php
 
-namespace Store\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,9 +9,13 @@ class Categoria extends Model {
 	protected $table = 'categorias';
 	public $timestamps = true;
 
+	protected 	$fillable 	= ['nombre'];
+
 	public function productos()
 	{
-		return $this->hasMany('Store\Models\Producto', 'categoria_id');
+		return $this->hasMany(Producto::class);
 	}
+
+
 
 }

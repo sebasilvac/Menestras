@@ -9,7 +9,10 @@ class CreateTiendasTable extends Migration {
 	{
 		Schema::create('tiendas', function(Blueprint $table) {
 			$table->increments('id');
-			$table->integer('users_id')->unsigned();
+
+			$table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+
 			$table->string('nombre', 200);
 			$table->timestamps();
 			$table->softDeletes();

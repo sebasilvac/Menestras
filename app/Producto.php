@@ -1,6 +1,6 @@
 <?php
 
-namespace Store\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,7 +13,9 @@ class Producto extends Model {
 	use SoftDeletes;
 
 	protected $dates = ['deleted_at'];
-	protected $visible = array('nombre', 'precio');
+
+	protected 	$visible 	= ['nombre', 'cod_barra', 'precio', 'tienda_id', 'categoria_id', 'bodega_id'];
+	protected 	$fillable 	= ['nombre', 'cod_barra', 'precio', 'tienda_id', 'categoria_id', 'bodega_id'];
 
 	public function tienda()
 	{

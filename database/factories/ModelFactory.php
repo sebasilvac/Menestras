@@ -30,3 +30,12 @@ $factory->define(App\Tienda::class, function (Faker\Generator $faker) {
         'users_id' => $user->id
     ];
 });
+
+$factory->define(App\Post::class, function (Faker\Generator $faker) {
+
+    return [
+        'title'    => $faker->sentence,
+        'content'  => $faker->paragraph,
+        'pending'  => $faker->boolean()
+    ];
+});

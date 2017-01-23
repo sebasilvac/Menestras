@@ -23,6 +23,8 @@ class CreatePostsTable extends Migration
             $table->mediumText('content');
             $table->boolean('pending')->default(true);
 
+            $table->string('slug');
+
             $table->timestamps();
         });
     }

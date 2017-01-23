@@ -10,18 +10,63 @@ class ShowPostTest extends FeatureTestCase
             'name' => 'Sebastián Silva'
         ]);
 
-        $post = factory(\App\Post::class)->make([
+        $post = $this->createPost([
             'title'   => 'titulo post',
-            'content' => 'contenido post'
+            'content' => 'contenido post',
+            'user_id' => $user->id
+        ]);
+
+        // them
+        $this->visit($post->url)
+            ->seeInElement('h1', $post->title)
+            ->see($post->content)
+            ->see('Sebastián Silva')
+        ;
+
+    }
+
+    function test_old_urls_are_redirected(){
+
+
+        $post = $this->createPost([
+            'title' => 'Old title'
+        ]);
+
+        $url = $post->url;
+
+        $post->update([
+            'title' => 'New title'
+        ]);
+
+        $this->visit($url)
+            ->seePageIs($post->url);
+    }
+
+    /* # Prueba de regreción
+    function test_url_con_slug_incorrecto_aun_funciona(){
+
+        // teniendo
+
+        $user = $this->defaultUser([
+            'name' => 'Sebastián Silva'
+        ]);
+
+        $post = factory(\App\Post::class)->make([
+            'title'   => 'Old title'
         ]);
 
         $user->posts()->save($post);
 
-        $this->visit(route('posts.show', $post))
-            ->seeInElement('h1', $post->title)
-            ->see($post->content)
-            ->see($user->name)
-        ;
+        $url = $post->url;
+
+        $post->update([
+            'title' => 'New title'
+        ]);
+
+        $this->visit($url)
+            ->assertResponseOk()
+            ->see('New title');
 
     }
+    */
 }

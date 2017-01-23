@@ -36,21 +36,27 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
         return $app;
     }
 
-    public function defaultUser(){
+    public function defaultUser(array $attributes = []){
 
         if( $this->defaultUser ){
             return $this->defaultUser;
         }
 
-        return $this->defaultUser =  factory(\App\User::class)->create();
+        return $this->defaultUser =  factory(\App\User::class)->create($attributes);
     }
 
-    public function defaultTienda(){
+    public function defaultTienda(array $attributes = []){
 
         if( $this->defaultTienda ){
             return $this->defaultTienda;
         }
 
-        return $this->defaultTienda =  factory(\App\Tienda::class)->create();
+        return $this->defaultTienda =  factory(\App\Tienda::class)->create($attributes);
+    }
+
+    public function createPost(array $attributes = []){
+
+        return factory(\App\Post::class)->create($attributes);
+
     }
 }

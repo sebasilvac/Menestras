@@ -22,7 +22,8 @@
                 'title'     => $title,
                 'content'   => $content,
                 'pending'   => true,
-                'user_id'   => $user->id
+                'user_id'   => $user->id,
+                'slug'      => 'esta-es-una-pregunta'
             ]);
 
             // usuario redirigido al post
